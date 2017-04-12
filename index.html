@@ -8,13 +8,27 @@
 
 <body>
     <div id="dvcontainer">
-        <svg id="svgcontainer" height="550" width="1000">
+        <svg id="svgcontainer" height="600" width="600">
         </svg>
+    </div>
+    <div id="dvcharttype">
+        <input type="radio" id="rdbarchart" name="Chart" /><label for="rdbarchart"> Bar Chart</label>
+        <br />
+        <input type="radio" id="rdcolumnchart" name="Chart" /><label for="rdcolumnchart">Column Chart</label>
+        <br />
+        <input type="radio" id="rdpointchart" name="Chart" /><label for="rdpointchart">Point Chart</label>
+        <br />
+        <input type="radio" id="rdlinechart" name="Chart" /><label for="rdlinechart">Line Chart</label>
+        <br />
+        <input type="radio" id="rdareachart" name="Chart" /><label for="rdareachart">Area Chart</label>
+        <br />
+        <input type="radio" id="rdpiechart" name="Chart" /><label for="rdpiechart">Pie Chart</label>
     </div>
 </body>
 <script src="scripts/main.js"></script>
 <script src="scripts/parseManager.js"></script>
 <script src="scripts/chartManager.js"></script>
 <script src="scripts/chart.js"></script>
+<script src="scripts/axis.js"></script>
 
 </html>

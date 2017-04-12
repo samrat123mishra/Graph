@@ -1,5 +1,18 @@
-#dvcontainer{
-    position:absolute;
-    left:10%;
-    top:10%;
-}
+
+ #dvcontainer {
+            height: 600px;
+            width: 900px;
+            border: double;
+            background-color: azure;
+            position: fixed;
+            left: 18%;
+        }
+        
+        #dvcharttype {
+            border: double;
+            display: inline-block;
+            padding:10px;
+        }
+        svg{
+            margin: 10px;
+        }
