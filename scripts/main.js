@@ -8,7 +8,7 @@ $(document).ready(function () {
 		var binds = new BindEvent(chartManager.val, chartManager.label)
 	})
 		.catch(function (err) {  //catch
-			console.log(err);
+			
 		})
 });
 function Resize() {

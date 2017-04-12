@@ -5,7 +5,6 @@ var label=[];
 		value.push(data[i].value);
 		label.push(data[i].label);
 	}
-	console.log(value,label);
 	this.val=value;
 	this.label=label;
 }

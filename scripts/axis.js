@@ -21,7 +21,6 @@ var valCalc = function (arr) {
     maxVal = Math.max.apply(Math, arr);
     x=minVal<0?2:1;
     var no = minVal / Math.pow(10, (minVal.toString().length) - x);
-    console.log(no);
     roundOff = Math.floor(no);
     Start = roundOff * Math.pow(10, (minVal.toString().length) - x);
     valDiff = maxVal - Start;
@@ -29,7 +28,6 @@ var valCalc = function (arr) {
     this.end = maxVal;
     this.start = Start;
     this.incr = markerVal;
-    console.log(maxVal, minVal, roundOff, Start, valDiff, markerVal);
 }
 
 function BarAxisRender(x1, y1, x2, y2) {
@@ -49,9 +47,7 @@ function barChartSettings(populationArray) {
     svgcSpace = 60;
 
     svgcHeight = svg.height.baseVal.value - 2 * svgcMargin - svgcSpace;
-    console.log(svgcHeight);
     svgcWidth = svg.width.baseVal.value - 2 * svgcMargin - svgcSpace;
-    console.log(svgcWidth);
     svgcMarginSpace = svgcMargin + svgcSpace;
     svgcMarginHeight = svgcMargin + svgcHeight;
 
@@ -59,8 +55,6 @@ function barChartSettings(populationArray) {
     bcMargin = 15;
     totalChartBars = populationArray.length;
     bcWidth = (svgcWidth / totalChartBars) - bcMargin;
-
-    //Maximum value to plot on chart
 }
 //Ends Here
 
@@ -81,12 +75,6 @@ function drawXYAxis(x1, y1, x2, y2) {
 
 function drawAxisLableAndMarkers(type) {
     switch (type) {
-        case 'bar':
-        //Y-Axis
-        //drawXYAxis(svgcMarginSpace, svgcMargin-svgcHeight, svgcMarginSpace, svgcMarginHeight);
-        //X-Axis
-        //drawXYAxis(svgcMarginSpace, svgcMarginHeight,  svgcWidth, svgcMarginHeight);
-        //break;
         case 'column':
             //Y-Axis
             drawXYAxis(svgcMarginSpace, svgcMarginHeight, svgcMarginSpace, svgcMargin);
@@ -96,9 +84,6 @@ function drawAxisLableAndMarkers(type) {
     }
 
 }
-
-
-
 
 function drawAxisMarkers(type, min, max, incr, labArr) {
     var numMarkers = parseInt(max / totalLabel);
@@ -132,24 +117,6 @@ function drawAxisMarkers(type, min, max, incr, labArr) {
         svg.appendChild(textelement);
     }
 }
-
-// function drawChartWithCalculation(type, min, max, incr, valArr) {
-//     for (var i = 0; i < totalChartBars; i++) {
-//         bcVal = valArr[i];
-//         bcHt = (bcVal - min) * svgcHeight / (max - min);
-//         console.log(bcHt);
-//         bcX = svgcMarginSpace + (i * (bcWidth + bcMargin)) + bcMargin;
-//         bcY = (svgcMarginHeight - bcHt - 2);
-//         switch (type) {
-//             case "column":
-//                 drawRectangleForChart(bcX, bcY, bcWidth, bcHt,bcVal);
-//                 break;
-//             case "Point":
-//                 drawEllipse(bcX, bcY, 5, 5);
-//                 break;
-//         }
-//     }
-// }
 
 function clearGraph() {
             while (svg.lastChild) {
