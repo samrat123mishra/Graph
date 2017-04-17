@@ -1,4 +1,4 @@
-var ptArr = [], ptArr1 = [];
+var ptArr = [], ptArr1 = [], angles = [];
 var createChart = function () {
     this.drawChart = function (type, min, max, incr, valArr) {
         for (var i = 0; i < totalChartBars; i++) {

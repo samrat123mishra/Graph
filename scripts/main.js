@@ -1,5 +1,4 @@
 $(document).ready(function () {
-	Resize();
 	var parser = new parserManager();
 	var x = parser.getData("scripts/graph.json");
 	x.then(function (resp) {  //try
@@ -10,11 +9,6 @@ $(document).ready(function () {
 		.catch(function (err) {  //catch
 		})
 });
-function Resize() {
-	window.addEventListener('resize', function () {
-		document.getElementById('dvcontainer').setAttribute("style", "height:" + (window.innerHeight - 62) + "px;width:" + (window.innerWidth - 219) + "px");
-	})
-}
 
 var BindEvent = function (valueArr, labelArr) {
 	barChartSettings(valueArr);
@@ -56,5 +50,11 @@ var BindEvent = function (valueArr, labelArr) {
 		var axis = new valCalc(valueArr, labelArr);
 		drawAxisMarkers('area', axis.start, axis.end, axis.incr, labelArr);
 		chartOpt.drawChart('area', axis.start, axis.end, axis.incr, valueArr);
+	}, false);
+	document.getElementById('rdpiechart').addEventListener('click', function () {
+		clearGraph();
+		angles=[];
+		var axis = new valCalc(valueArr, labelArr);
+		pieChart('pie', axis.start, axis.end, valueArr);
 	}, false);
 }
