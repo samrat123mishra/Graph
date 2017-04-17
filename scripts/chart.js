@@ -1,52 +1,38 @@
-var chart = function () {
-      this.renderColChart = function (x, y, wd, ht, text) {
-        var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-        rect.setAttributeNS(null, 'x', x);
-        rect.setAttributeNS(null, 'y', y);
-        rect.setAttributeNS(null, 'width', wd);
-        rect.setAttributeNS(null, 'height', ht);
-        rect.setAttributeNS(null, 'fill', "red");
-        svg.appendChild(rect);
-        var markerXPosition = x;
-        var markerYPosition = y - 5;
-        textelement = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-        textelement.setAttribute('dx', markerXPosition);
-        textelement.setAttribute('dy', markerYPosition);
-        txtnode = document.createTextNode(text);
-        textelement.appendChild(txtnode);
-        svg.appendChild(textelement);
-    }
-    this.barChart = function () {
-
-    }
-    this.columnChart = function () {
-
-    }
-    this.pieChart = function () {
-
-    }
-}
-
-var myChart = function () {
-    chart.call(this);
-    this.columnChart = function (type, min, max, incr, valArr) {
+var ptArr = [], ptArr1 = [];
+var createChart = function () {
+    this.drawChart = function (type, min, max, incr, valArr) {
         for (var i = 0; i < totalChartBars; i++) {
             bcVal = valArr[i];
             bcHt = (bcVal - min) * svgcHeight / (max - min);
+            barWidth = (bcVal - min) * svgcWidth / (max - min);
+            barX = svgcMarginSpace;
+            barY = svgcMarginHeight - svgcMargin - barHt - (i * (barHt + bcMargin));
             bcX = svgcMarginSpace + (i * (bcWidth + bcMargin)) + bcMargin;
             bcY = (svgcMarginHeight - bcHt - 2);
             switch (type) {
+                case "bar":
+                    drawBarChart.renderBarChart(barX, barY, barWidth, barHt, bcVal);
+                    break;
                 case "column":
-                    this.renderColChart(bcX, bcY, bcWidth, bcHt, bcVal);
+                    drawColChart.renderColChart(bcX, bcY, bcWidth, bcHt, bcVal);
+                    break;
+                case "point":
+                    drawPointChart.renderPointChart(bcX, bcY, 4, bcVal);
+                    break;
+                case "line":
+                    drawLineChart.renderLineChart(bcX, bcY, 4, bcVal);
+                    break;
+                case "area":
+                    drawAreaChart.renderAreaChart(bcX, bcY, 4, bcVal);
                     break;
             }
         }
 
     }
-  
+
 }
-myChart.prototype = chart.prototype;
+var myChart = function () {
+    createChart.call(this);
+}
+myChart.prototype = createChart.prototype;
 var chartOpt = new myChart();
-
-
-

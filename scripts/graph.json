@@ -6,7 +6,7 @@
     },
     "data": [
         {
-            "label": "Jul",
+            "label": "June",
             "value": "150000",
             "tooltext": "Occupancy: 67%{br}Revenue: $150,000{br}3 conferences hosted!"
         },
@@ -16,9 +16,9 @@
             "tooltext": "Occupancy: 64%{br}Revenue: $130,000{br}Lean summer period!"
         },
         {
-            "label": "Sep",
+            "label": "Sept",
             "tooltext": "Occupancy: 44%{br}Revenue: $80,000{br}Reason: Renovating the Lobby",
-            "value": "95000"
+            "value": "120000"
         },
         {
             "label": "Oct",
