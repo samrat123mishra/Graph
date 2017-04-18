@@ -15,12 +15,24 @@ var bcWidth,
 //The Axis Property
 var totalLabel = 10;
 //The Chart dimensional settings
-var valCalc = function (arr) {
+ function valCalc(arr) {
     var minVal,
         maxVal,
         roundOff,
         Start,
         markerVal, x;
+        svgcMargin = 20;
+    svgcSpace = 60;
+
+    svgcHeight = svg.height.baseVal.value - 2 * svgcMargin - svgcSpace;
+    svgcWidth = svg.width.baseVal.value - 2 * svgcMargin - svgcSpace;
+    svgcMarginSpace = svgcMargin + svgcSpace;
+    svgcMarginHeight = svgcMargin + svgcHeight;
+
+    bcMargin = 15;
+    totalChartBars = arr.length;
+    bcWidth = (svgcWidth / totalChartBars) - bcMargin;
+    barHt = (svgcHeight / totalChartBars) - bcMargin;
     minVal = Math.min.apply(Math, arr);
     maxVal = Math.max.apply(Math, arr);
     x = minVal < 0 ? 2 : 1;
@@ -33,23 +45,8 @@ var valCalc = function (arr) {
     this.start = Start;
     this.incr = markerVal;
 }
-function barChartSettings(populationArray) {
-    svgcMargin = 20;
-    svgcSpace = 60;
-
-    svgcHeight = svg.height.baseVal.value - 2 * svgcMargin - svgcSpace;
-    svgcWidth = svg.width.baseVal.value - 2 * svgcMargin - svgcSpace;
-    svgcMarginSpace = svgcMargin + svgcSpace;
-    svgcMarginHeight = svgcMargin + svgcHeight;
-
-    //The Bar Properties
-    bcMargin = 15;
-    totalChartBars = populationArray.length;
-    bcWidth = (svgcWidth / totalChartBars) - bcMargin;
-    barHt = (svgcHeight / totalChartBars) - bcMargin;
-}
 //Function to Draw X and Y Axis
-function drawAxisLableAndMarkers(type) {
+function drawAxis(type) {
     switch (type) {
         case 'bar':
             //Y-Axis

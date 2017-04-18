@@ -9,8 +9,8 @@ var textMarker = function () {
         textelement.appendChild(txtnode);
         svg.appendChild(textelement);
     }
-    this.textBarChart = function (x, y, text) {
-        var markerXPosition = x + bcHt;
+    this.textBarChart = function (x, y, text,barW) {
+        var markerXPosition = x + barW;
         var markerYPosition = y + (barHt / 2);
         textelement = document.createElementNS("http://www.w3.org/2000/svg", 'text');
         textelement.setAttribute('x', markerXPosition + 5);

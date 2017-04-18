@@ -1,38 +1,28 @@
 var ptArr = [], ptArr1 = [], angles = [];
-var createChart = function () {
-    this.drawChart = function (type, min, max, incr, valArr) {
-        for (var i = 0; i < totalChartBars; i++) {
-            bcVal = valArr[i];
-            bcHt = (bcVal - min) * svgcHeight / (max - min);
-            barWidth = (bcVal - min) * svgcWidth / (max - min);
-            barX = svgcMarginSpace;
-            barY = svgcMarginHeight - svgcMargin - barHt - (i * (barHt + bcMargin));
-            bcX = svgcMarginSpace + (i * (bcWidth + bcMargin)) + bcMargin;
-            bcY = (svgcMarginHeight - bcHt - 2);
+var Chart = function (type,min, max, incr, valArr) {
             switch (type) {
                 case "bar":
-                    drawBarChart.renderBarChart(barX, barY, barWidth, barHt, bcVal);
+                var drawBarChart = new barChart();
+                    drawBarChart.createChart(min, max, incr, valArr);
                     break;
                 case "column":
-                    drawColChart.renderColChart(bcX, bcY, bcWidth, bcHt, bcVal);
+                var drawColChart = new colChart();
+                    drawColChart.createChart(min, max, incr, valArr); 
                     break;
                 case "point":
-                    drawPointChart.renderPointChart(bcX, bcY, 4, bcVal);
+                var drawPoiChart = new pointChart();
+                    drawPoiChart.createChart(min, max, 4, valArr); 
                     break;
                 case "line":
-                    drawLineChart.renderLineChart(bcX, bcY, 4, bcVal);
+                var drawLineChart = new lineChart(); 
+                    drawLineChart.createChart(min, max, 4, valArr);
                     break;
                 case "area":
-                    drawAreaChart.renderAreaChart(bcX, bcY, 4, bcVal);
+                var drawAreaChart = new areaChart();
+                    drawAreaChart.createChart(min, max, 4, valArr);
                     break;
             }
+            this.renderChart = function () { 
+
+            }
         }
-
-    }
-
-}
-var myChart = function () {
-    createChart.call(this);
-}
-myChart.prototype = createChart.prototype;
-var chartOpt = new myChart();
