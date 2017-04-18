@@ -1,27 +1,10 @@
-var svg = document.getElementsByTagName('svg')[0]; //The declaration for SVG tag
-//The Chart dimentional settings
-var svgcWidth,
-    svgcHeight,
-    svgcMargin,
-    svgcSpace;
-var svgcMarginSpace,
-    svgcMarginHeight;
-//The bar Properties Declaration
-var bcWidth,
-    barHt,
-    bcMargin,
-    totalChartBars,
-    bcWidthMargin;
-//The Axis Property
-var totalLabel = 10;
-//The Chart dimensional settings
- function valCalc(arr) {
+var AxisCalc = function(arr) {
     var minVal,
         maxVal,
         roundOff,
         Start,
         markerVal, x;
-        svgcMargin = 20;
+    svgcMargin = 20;
     svgcSpace = 60;
 
     svgcHeight = svg.height.baseVal.value - 2 * svgcMargin - svgcSpace;
@@ -46,7 +29,7 @@ var totalLabel = 10;
     this.incr = markerVal;
 }
 //Function to Draw X and Y Axis
-function drawAxis(type) {
+var drawAxis = function(type) {
     switch (type) {
         case 'bar':
             //Y-Axis
@@ -85,9 +68,9 @@ function drawAxisMarkers(type, min, max, incr, labArr) {
     var numMarkers = parseInt(max / totalLabel);
     var markerVal = min;
     if (type == "bar") {
-     marker.barAxisMarkers(type, min, max, incr, labArr);   
+        marker.barAxisMarkers(type, min, max, incr, labArr);
     } else {
-         marker.otherAxisMarker(type, min, max, incr, labArr);
+        marker.otherAxisMarker(type, min, max, incr, labArr);
     }
 }
 function clearGraph() {
