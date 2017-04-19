@@ -1,5 +1,4 @@
 $(document).ready(function () {
-	Resize()
 	var parser = new parserManager();
 	var x = parser.getData("scripts/graph.json");
 	x.then(function (resp) {  //try
@@ -8,50 +7,51 @@ $(document).ready(function () {
 		var binds = new BindEvent(chartManager.val, chartManager.label)
 	})
 		.catch(function (err) {  //catch
-			console.log(err);
 		})
 });
-function Resize() {
-	window.addEventListener('resize', function () {
-		document.getElementById('dvcontainer').setAttribute("style", "height:" + (window.innerHeight - 62) + "px;width:" + (window.innerWidth - 219) + "px");
-	})
-}
-
-
-
 var BindEvent = function (valueArr, labelArr) {
-	barChartSettings(valueArr);
 	document.getElementById('rdbarchart').addEventListener('click', function () {
 		clearGraph();
-		var axis = new valCalc(valueArr, labelArr);
-		drawAxisLableAndMarkers('bar');
+		var axis = new AxisCalc(valueArr);
+		var createAxis = new drawAxis('bar');
+		drawAxisMarkers('bar', axis.start, axis.end, axis.incr, labelArr);
+		var chartOpt = new Chart('bar',axis.start, axis.end, axis.incr, valueArr);
 	}, false);
 	document.getElementById('rdcolumnchart').addEventListener('click', function () {
 		clearGraph();
-		drawAxisLableAndMarkers('column');
-		var axis = new valCalc(valueArr, labelArr);
+		var axis = new AxisCalc(valueArr);
+		var createAxis = new drawAxis('column');
 		drawAxisMarkers('column', axis.start, axis.end, axis.incr, labelArr);
-		chartOpt.columnChart('column', axis.start, axis.end, axis.incr, valueArr);
-
+		var chartOpt = new Chart('column',axis.start, axis.end, axis.incr, valueArr);
 	}, false);
 	document.getElementById('rdpointchart').addEventListener('click', function () {
 		clearGraph();
-		drawAxisLableAndMarkers('point');
-		var axis = new valCalculation(valueArr, labelArr);
+		var axis = new AxisCalc(valueArr);
+		var createAxis = new drawAxis('point');
+		drawAxisMarkers('point', axis.start, axis.end, axis.incr, labelArr);
+		var chartOpt = new Chart('point',axis.start, axis.end, axis.incr, valueArr);
 	}, false);
 	document.getElementById('rdlinechart').addEventListener('click', function () {
 		clearGraph();
-		drawAxisLableAndMarkers('line');
-		var axis = new valCalculation(valueArr, labelArr);
+		ptArr = [];
+		var axis = new AxisCalc(valueArr);
+		var createAxis = new drawAxis('line');	
+		drawAxisMarkers('line', axis.start, axis.end, axis.incr, labelArr);
+		var chartOpt = new Chart('line',axis.start, axis.end, axis.incr, valueArr);
 	}, false);
 	document.getElementById('rdareachart').addEventListener('click', function () {
 		clearGraph();
-		drawAxisLableAndMarkers('area');
-		var axis = new valCalculation(valueArr, labelArr);
+		var axis = new AxisCalc(valueArr);
+		var createAxis = new drawAxis('area');
+		ptArr = [];
+		ptArr1 = [];
+		drawAxisMarkers('area', axis.start, axis.end, axis.incr, labelArr);
+		var chartOpt = new Chart('area',axis.start, axis.end, axis.incr, valueArr);
 	}, false);
 	document.getElementById('rdpiechart').addEventListener('click', function () {
 		clearGraph();
-		drawAxisLableAndMarkers('pie');
-		var axis = new valCalculation(valueArr, labelArr);
+		angles = [];
+		var axis = new AxisCalc(valueArr);
+		pieChart('pie', axis.start, axis.end, valueArr);
 	}, false);
 }
