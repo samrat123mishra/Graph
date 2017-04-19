@@ -1,6 +1,7 @@
 
  #dvcontainer {
-            height: 600px;
+     margin: 10px;
+            height: 630px;
             width: 900px;
             border: double;
             background-color: azure;
@@ -9,10 +10,13 @@
         }
         
         #dvcharttype {
+             margin: 10px;
             border: double;
             display: inline-block;
             padding:10px;
         }
         svg{
-            margin: 10px;
+              margin: 10px;
+              margin-top: 5%;
+              margin-left: 7%;
         }
